@@ -1,0 +1,9 @@
+name: Apigee Edge Team Based Product Access
+description: Team based access for api products.
+type: module
+core: 8.x
+package: Apigee
+core_version_requirement: ^8 || ^9
+
+dependencies:
+  - apigee_edge:apigee_edge_teams

@@ -1,0 +1,36 @@
+
+<?php
+/**
+ *@file module file of fg_apigee_edge_apiproduct_tbac
+ *@author Sumedha Deshpande
+ */
+
+
+/**
+ * hook - fg_apigee_edge_teams_extra_form_alter()
+ * Alter hook is used to attach different custom submit handller.
+ * Implements hook_form_alter().
+ */
+function fg_apigee_edge_apiproduct_tbac_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    // Handdler to Create a new role when Team is created
+    //control team based visibility of products while creating team apps
+    if($form_id == 'team_app_add_for_team_form') {
+      $org_name = $form["owner"]["#value"];
+      // Check for existing product Mapping
+      $query = \Drupal::database()->select('org_product_mapping', 't');
+      $query->addField('t', 'allowed_product');
+      $query->condition('t.org_id', $org_name);
+      $query->distinct();
+      $result = $query->execute()->fetchAll();
+      foreach($result as $ap) {
+        $product_names[]=$ap->allowed_product;
+      }
+      $form['api_products'] = [
+        '#type' => 'checkboxes',
+        '#title' => 'API Products:',
+        '#options' => $product_names,
+        '#weight' =>4,
+      ];
+    }
+
+}

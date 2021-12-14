@@ -1,0 +1,41 @@
+<?php
+/**
+ * @file install schema to create a table at the time of module install
+ *
+ */
+
+function fg_apigee_edge_apiproduct_tbac_schema() {
+
+    $schema['org_product_mapping'] = array(
+      'description' => 'To store the organization and product mapping.',
+      'fields' => array(
+        'rid' => array(
+         'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'Record id.',
+        ),
+        'org_id' => array(
+          'type' => 'varchar',
+          'length' => '255',
+          'description' => 'Organization Id.',
+        ),
+        'allowed_product' => array(
+          'type' => 'varchar',
+          'length' => '255',
+          'description' => 'Allowed product.',
+        ),
+      ),
+      'primary key' => array('rid'),
+    );
+    return $schema;
+}
+
+/**
+ * Implements hook_uninstall()
+ */
+function fg_apigee_edge_apiproduct_tbac_uninstall() {
+    \Drupal::database()->schema()->dropTable('org_product_mapping');
+  }
+
+

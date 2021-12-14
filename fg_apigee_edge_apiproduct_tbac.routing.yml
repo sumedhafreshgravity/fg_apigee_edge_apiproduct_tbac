@@ -1,0 +1,13 @@
+fg_apigee_edge_apiproduct_tbac.simple_custom_module:
+  path: '/simple-custom-form'
+  defaults:
+    _form: '\Drupal\fg_apigee_edge_apiproduct_tbac\Form\ProductAccessForm'
+  requirements:
+    _access: 'TRUE'
+
+fg_apigee_edge_apiproduct_tbac.product_org_mapping:
+ path: '/team/{team}/product-org-mapping'
+ defaults:
+  _controller: '\Drupal\fg_apigee_edge_apiproduct_tbac\Controller\MappingController::redirecttomapping'
+ requirements:
+  _permission: 'access content'

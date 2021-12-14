@@ -1,0 +1,7 @@
+
+fg_apigee_edge_apiproduct_tbac.productorgpermission:
+  route_name: fg_apigee_edge_apiproduct_tbac.product_org_mapping
+  title: 'API Product - Company Mapping'
+  base_route: entity.team.canonical
+  weight: 100
+
